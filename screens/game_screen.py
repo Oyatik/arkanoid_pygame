@@ -97,6 +97,14 @@ def _apply_bonus(bonus_type: str, paddle: Paddle, balls: list[Ball], lives: int)
     """ Applies the bonus effect """
     if bonus_type == "extend":
         paddle.extend()
+    elif bonus_type == "shrink":
+        paddle.shrink_width()
+    elif bonus_type == "speed_up":
+        for ball in balls:
+            ball.speed_up()
+    elif bonus_type == "speed_down":
+        for ball in balls:
+            ball.speed_down()
     elif bonus_type == "multiball":
         balls.append(_new_ball(paddle))
     elif bonus_type == "laser":
