@@ -40,6 +40,12 @@ class Paddle:
         if self.extended:
             self.rect.width //= 2
             self.extended = False
+    def shrink_width(self) -> None:
+        """Paddle Shrink - уменьшает ширину платформы."""
+       
+        if self.rect.width > 40: 
+           
+            self.rect.inflate_ip(-20, 0)
 
     def draw(self, screen: pygame.Surface) -> None:
         pygame.draw.rect(screen, cfg.PADDLE_COLOR, self.rect, border_radius=5)
@@ -60,6 +66,16 @@ class Ball:
         self.trail.append(self.rect.center)
         self.rect.x += self.vx
         self.rect.y += self.vy
+    
+    def speed_up(self) -> None:
+        """Ball Speed Up - увеличивает скорость мяча."""
+        self.vx *= 1.25  
+        self.vy *= 1.25
+
+    def speed_down(self) -> None:
+        """Ball Speed Down - уменьшает скорость мяча."""
+        self.vx *= 0.8   
+        self.vy *= 0.8
 
     def draw(self, screen: pygame.Surface) -> None:
         trail_len = len(self.trail)
@@ -106,8 +122,11 @@ class Brick:
 class Bonus:
     """ Bonus emitted from a destroyed block. """
 
-    TYPES = {
+   TYPES = {
         "extend": {"color": cfg.GREEN, "letter": "E"},
+        "shrink": {"color": (255, 100, 100), "letter": "S"},       
+        "speed_up": {"color": (255, 165, 0), "letter": "+"},       
+        "speed_down": {"color": (100, 100, 255), "letter": "-"},   
         "multiball": {"color": cfg.MAGENTA, "letter": "M"},
         "laser": {"color": cfg.YELLOW, "letter": "L"},
         "extra_life": {"color": cfg.CYAN, "letter": "1"},
