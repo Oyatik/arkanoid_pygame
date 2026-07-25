@@ -122,7 +122,7 @@ class Brick:
 class Bonus:
     """ Bonus emitted from a destroyed block. """
 
-   TYPES = {
+    TYPES = {
         "extend": {"color": cfg.GREEN, "letter": "E"},
         "shrink": {"color": (255, 100, 100), "letter": "S"},       
         "speed_up": {"color": (255, 165, 0), "letter": "+"},       
